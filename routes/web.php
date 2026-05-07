@@ -181,6 +181,14 @@ Route::group(['middleware' => ['demo', 'XSS']], function () {
             // Booking Route...
             Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
 
+            // ProCare Services Frontend Routes
+            Route::get('/jahir-suchna', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'jahirSuchna'])->name('jahir-suchna');
+            Route::get('/jahir-suchna/{id}', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'jahirSuchnaShow'])->name('jahir-suchna.show');
+            Route::get('/vaculation-search-report', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'vaculationForm'])->name('vaculation.form')->middleware('auth:web');
+            Route::post('/vaculation-search-report', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'vaculationSubmit'])->name('vaculation.submit')->middleware('auth:web');
+            Route::get('/home-service-register', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'homeServiceForm'])->name('home-service.form')->middleware('auth:web');
+            Route::post('/home-service-register', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'homeServiceSubmit'])->name('home-service.submit')->middleware('auth:web');
+
             Route::get('/pricing-plan', [HomeController::class, 'pricing_plan'])->name('pricing-plan');
 
             Route::get('/properties', [HomeController::class, 'properties'])->name('properties');
@@ -611,6 +619,15 @@ Route::group(['middleware' => ['demo', 'XSS']], function () {
 
         Route::get('mobile-app-setting', [MobileAppController::class, 'mobile_app'])->name('mobile-app-setting');
         Route::post('update-mobile-app-setting', [MobileAppController::class, 'update_mobile_app'])->name('update-mobile-app-setting');
+
+        // ProCare Services Admin Routes
+        Route::get('service-requests/vaculation-search-report', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'vaculationSearchReport'])->name('service-requests.vaculation');
+        Route::get('service-requests/home-service', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'homeService'])->name('service-requests.home-service');
+        Route::get('service-requests/{id}', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'show'])->name('service-requests.show');
+        Route::put('service-requests/{id}', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'update'])->name('service-requests.update');
+        Route::delete('service-requests/{id}', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'destroy'])->name('service-requests.destroy');
+
+        Route::resource('public-notices', \App\Http\Controllers\Admin\PublicNoticeController::class);
     });
 });
 // end admin routes

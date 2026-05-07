@@ -129,6 +129,25 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown {{ Route::is('admin.service-requests.*') || Route::is('admin.public-notices.*') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown">
+                    <i class="fas fa-briefcase"></i>
+                    <span>ProCare Services</span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li class="{{ Route::is('admin.service-requests.vaculation') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.service-requests.vaculation') }}">Vaculation & Search Report</a>
+                    </li>
+                    <li class="{{ Route::is('admin.service-requests.home-service') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.service-requests.home-service') }}">Home Service Register</a>
+                    </li>
+                    <li class="{{ Route::is('admin.public-notices.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.public-notices.index') }}">Jahir Suchnaye</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="nav-item dropdown {{ Route::is('admin.country.*') || Route::is('admin.country-import-page') || Route::is('admin.city.*') || Route::is('admin.city-import-page') || Route::is('admin.assign-homepage-city') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown">
                     <i class="fas fa-map-marker-alt"></i>

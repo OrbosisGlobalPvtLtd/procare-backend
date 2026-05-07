@@ -114,7 +114,8 @@ Version:	1.0
 
 .homec-header__logo img {
     max-width: 150px;
-    max-height: 46px;
+    max-height: 54px;
+    margin-right: 25px;
 }
 
 .homec-header__menu {
@@ -9745,3 +9746,93 @@ input[type="range"]::-webkit-slider-thumb {
 /*======================================
 	End Global
 ========================================*/
+
+/* ProCare Premium Custom Header UI */
+
+/* User Dropdown Profile Styling */
+.header-user-dropdown-wrap .dropdown-menu {
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 200px;
+    margin-top: 15px;
+    border-top: 3px solid #C99A2E;
+}
+
+.header-user-dropdown-wrap .dropdown-menu .dropdown-item {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1F2937;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.header-user-dropdown-wrap .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(201, 154, 46, 0.1);
+    color: #C99A2E;
+    padding-left: 25px;
+}
+
+.header-user-dropdown-wrap .dropdown-menu .dropdown-item i {
+    color: #C99A2E !important;
+}
+
+/* Ensure the dropdown shows on hover for desktop */
+@media (min-width: 992px) {
+    .header-user-dropdown-wrap:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .header-user-dropdown-wrap .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+    }
+}
+
+/* Fixed Create Property Button */
+.homec-header .homec-btn {
+    height: 48px !important;
+    line-height: 48px !important;
+    border-radius: 12px !important;
+    padding: 0 24px !important;
+    background-color: #C99A2E !important;
+    border-color: #C99A2E !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    min-width: 160px !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+}
+
+.homec-header .homec-btn span {
+    position: relative;
+    z-index: 2;
+    color: #fff !important;
+}
+
+.homec-header .homec-btn::before {
+    background-color: #B88A1F !important;
+    border-radius: 12px !important;
+}
+
+.homec-header .homec-btn:hover {
+    box-shadow: 0 4px 10px rgba(201, 154, 46, 0.4) !important;
+}
+
+/* Align Logo Height perfectly */
+.homec-header__logo img {
+    height: 56px !important;
+    width: auto !important;
+    max-height: 56px !important;
+    object-fit: contain !important;
+}

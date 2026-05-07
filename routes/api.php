@@ -172,3 +172,10 @@ Route::group(['middleware' => ['maintainance']], function () {
 
 });
 // end admin routes
+
+Route::prefix('v1')->group(function () {
+    Route::post('/service-requests/vaculation-search-report', [\App\Http\Controllers\Api\ServiceRequestApiController::class, 'vaculationSearchReport']);
+    Route::post('/service-requests/home-service', [\App\Http\Controllers\Api\ServiceRequestApiController::class, 'homeService']);
+    Route::get('/public-notices', [\App\Http\Controllers\Api\PublicNoticeApiController::class, 'index']);
+    Route::get('/public-notices/{id}', [\App\Http\Controllers\Api\PublicNoticeApiController::class, 'show']);
+});

@@ -1282,4 +1282,61 @@
             </section>
             <!-- End Blog Area -->
         @endif
+
+        <!-- ProCare Services Area -->
+        <section class="procare-services-area homec-bg-third-color pd-top-90 pd-btm-120">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-10 col-12">
+                        <div class="homec-section__head text-center mg-btm-30">
+                            <span class="homec-section__badge homec-primary-color homec-section__badge--small m-0" data-aos="fade-in" data-aos-delay="300">ProCare Services</span>
+                            <h2 class="homec-section__title" data-aos="fade-in" data-aos-delay="400">Our Legal & Home Services</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Jahir Suchna -->
+                    <div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="400">
+                        <div class="homec-blog" style="background: #FFFFFF; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                            <div class="homec-blog__content" style="padding: 30px;">
+                                <div style="width: 60px; height: 60px; background: rgba(201, 154, 46, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                    <i class="fa fa-bullhorn" style="font-size: 24px; color: #C99A2E;"></i>
+                                </div>
+                                <h3 class="homec-blog__title mb-3"><a href="{{ route('jahir-suchna') }}">Jahir Suchna</a></h3>
+                                <p style="color: #6B7280; margin-bottom: 20px;">View and stay updated with public notices and legal announcements.</p>
+                                <a href="{{ route('jahir-suchna') }}" class="homec-btn" style="background-color: #C99A2E; border-color: #C99A2E; width: 100%; text-align: center;"><span>View Notices</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vaculation & Search Report -->
+                    <div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="500">
+                        <div class="homec-blog" style="background: #FFFFFF; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                            <div class="homec-blog__content" style="padding: 30px;">
+                                <div style="width: 60px; height: 60px; background: rgba(201, 154, 46, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                    <i class="fa fa-file-contract" style="font-size: 24px; color: #C99A2E;"></i>
+                                </div>
+                                <h3 class="homec-blog__title mb-3"><a href="{{ route('vaculation.form') }}">Vaculation & Search</a></h3>
+                                <p style="color: #6B7280; margin-bottom: 20px;">Request legal search reports and vaculation services for your property.</p>
+                                <a href="{{ route('vaculation.form') }}" class="homec-btn" style="background-color: #C99A2E; border-color: #C99A2E; width: 100%; text-align: center;"><span>Request Service</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Home Service Register -->
+                    <div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="600">
+                        <div class="homec-blog" style="background: #FFFFFF; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                            <div class="homec-blog__content" style="padding: 30px;">
+                                <div style="width: 60px; height: 60px; background: rgba(201, 154, 46, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                    <i class="fa fa-tools" style="font-size: 24px; color: #C99A2E;"></i>
+                                </div>
+                                <h3 class="homec-blog__title mb-3"><a href="{{ route('home-service.form') }}">Home Service Register</a></h3>
+                                <p style="color: #6B7280; margin-bottom: 20px;">Register and book reliable home maintenance services directly.</p>
+                                <a href="{{ route('home-service.form') }}" class="homec-btn" style="background-color: #C99A2E; border-color: #C99A2E; width: 100%; text-align: center;"><span>Book Now</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End ProCare Services Area -->
+
 @endsection
