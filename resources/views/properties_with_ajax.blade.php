@@ -8,15 +8,40 @@
 
 .img-box img {
     width: 100%;
-    height: auto !important;
+    height: 100% !important;
     object-fit: cover;   /* MAIN FIX */
+}
+
+.custom-property-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 30px;
+}
+
+@media (max-width: 1199px) {
+    .custom-property-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+    .custom-property-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 575px) {
+    .custom-property-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 </style>
 <!-- Grid Tab -->
 <div class="tab-pane fade show active grid_body" id="homec-grid" role="tabpanel">
-    <div class="row">
+    <div class="custom-property-grid">
         @forelse ($properties as $property_item)
-            <div class="col-md-6 col-12 mg-top-30">
+            <div>
                 <!-- Single property-->
 <a href="{{ route('property', html_decode($property_item->slug)) }}">
                 <div class="homec-property">
@@ -92,7 +117,9 @@
                 <!-- End Single property-->
             </div>
             @empty
-                <h4 class="text-danger text-center mt-5">{{ __('user.Property not found!') }}</h4>
+                <div style="grid-column: 1 / -1;">
+                    <h4 class="text-danger text-center mt-5">{{ __('user.Property not found!') }}</h4>
+                </div>
         @endforelse
     </div>
     <div class="row mg-top-40">
