@@ -31,7 +31,7 @@
             <div class="col-lg-4 col-md-6 col-12 mg-top-30">
                 <div class="homec-property">
                     <div class="homec-property__head">
-                        <img src="{{ $notice->image ? asset($notice->image) : asset($setting->default_placeholder) }}" alt="{{ $notice->title }}">
+                        <img src="{{ $notice->image ? asset('public/' . $notice->image) : asset($setting->default_placeholder) }}" alt="{{ $notice->title }}">
                         <div class="homec-property__bsticky">
                             <span class="homec-property__sale">{{ $notice->notice_type }}</span>
                         </div>

@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-body">
                         @if($notice->image)
-                        <img src="{{ asset($notice->image) }}" class="img-fluid mb-4 rounded" alt="{{ $notice->title }}" style="width: 100%; max-height: 400px; object-fit: cover;">
+                        <img src="{{ $notice->image ? asset('public/' . $notice->image) : asset($setting->default_placeholder) }}" class="img-fluid mb-4 rounded" alt="{{ $notice->title }}" style="width: 100%; max-height: 400px; object-fit: cover;">
                         @endif
                         <h2 class="mb-3">{{ $notice->title }}</h2>
                         <div class="d-flex mb-4">
