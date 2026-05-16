@@ -17,7 +17,7 @@ class ServiceRequestController extends Controller
     public function homeService()
     {
         $requests = ServiceRequest::where('request_type', 'home_service')->orderBy('id', 'desc')->get();
-        return view('admin.service_requests.index', compact('requests'))->with('title', 'Home Service Register Requests');
+        return view('admin.service_requests.index', compact('requests'))->with('title', 'Registery Home Service Requests');
     }
 
     public function show($id)

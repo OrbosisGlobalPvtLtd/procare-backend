@@ -4,6 +4,7 @@
 @else
     <html class="no-js" lang="ZXX">
 @endif
+
 <head>
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -205,11 +206,11 @@
 
                     <li><a href="{{ route('contact-us') }}">{{ __('user.Contact') }}</a></li>
 
-    <li>
-        <a href="{{ route('builder.login') }}">
-          Builder Login
-        </a>
-    </li>
+                    <li>
+                        <a href="{{ route('builder.login') }}">
+                            Builder Login
+                        </a>
+                    </li>
                     <li><a href="{{ route('user.dashboard') }}">{{ __('user.Dashboard') }}</a></li>
 
                     @if ($setting->agent_can_add_property)
@@ -308,7 +309,7 @@
                                 <div class="homec-header__logo">
                                     <a href="{{ route('home') }}"><img src="{{ asset($setting->footer_logo) }}"
                                             alt="ProCare"></a>
-                                           
+
                                 </div>
                                 <div class="homec-header__menu">
                                     <div class="navbar">
@@ -321,13 +322,16 @@
                                                 <li><a
                                                         href="{{ route('properties') }}">{{ __('user.Properties') }}</a>
                                                 </li>
-                                                
-                                                <li class="menu-item-has-children"><a
-                                                        href="javascript:;">ProCare Services</a>
+
+                                                <li class="menu-item-has-children"><a href="javascript:;">ProCare
+                                                        Services</a>
                                                     <ul class="sub-menu">
-                                                        <li><a href="{{ route('jahir-suchna') }}">Jahir Suchna</a></li>
-                                                        <li><a href="{{ route('vaculation.form') }}">Vaculation & Search Report</a></li>
-                                                        <li><a href="{{ route('home-service.form') }}">Home Service Register</a></li>
+                                                        <li><a href="{{ route('jahir-suchna') }}">Jahir Suchna</a>
+                                                        </li>
+                                                        <li><a href="{{ route('vaculation.form') }}">Vaculation &
+                                                                Search Report</a></li>
+                                                        <li><a href="{{ route('home-service.form') }}">Register Home
+                                                                Service </a></li>
                                                     </ul>
                                                 </li>
 
@@ -411,32 +415,41 @@
                             <button type="button" class="offcanvas-toggler" data-bs-toggle="modal"
                                 data-bs-target="#offcanvas-modal"><span class="line"></span><span
                                     class="line"></span><span class="line">
-                                        
-                                    </span>
+
+                                </span>
                             </button>
-                            
+
                             <div class="homec-header__button">
                                 <div class="header-user-dropdown-wrap position-relative">
                                     @auth('web')
                                         <a href="{{ route('user.dashboard') }}" class="homec-header__icon">
                                             <svg width="28" height="32" viewBox="0 0 28 32" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13.9659 16.2014C18.423 16.2014 22.0666 12.5579 22.0666 8.1007C22.0666 3.64352 18.423 0 13.9659 0C9.50869 0 5.86523 3.64352 5.86523 8.1007C5.86523 12.5579 9.50876 16.2014 13.9659 16.2014Z" />
-                                                <path d="M27.8681 22.6752C27.6558 22.1446 27.3729 21.6494 27.0545 21.1895C25.4273 18.784 22.9158 17.1922 20.0858 16.8031C19.7321 16.7677 19.343 16.8384 19.06 17.0507C17.5743 18.1473 15.8056 18.7133 13.9661 18.7133C12.1266 18.7133 10.3579 18.1473 8.87219 17.0507C8.58917 16.8384 8.20005 16.7323 7.84634 16.8031C5.0164 17.1922 2.46948 18.784 0.877655 21.1895C0.55929 21.6494 0.276269 22.18 0.0640708 22.6752C-0.0420283 22.8875 -0.00668454 23.1351 0.0994145 23.3474C0.382436 23.8426 0.736144 24.3379 1.05451 24.7623C1.54973 25.4345 2.08036 26.0358 2.68174 26.6018C3.17696 27.097 3.74294 27.5569 4.30898 28.0167C7.10351 30.1039 10.4641 31.2004 13.9307 31.2004C17.3974 31.2004 20.758 30.1038 23.5525 28.0167C24.1185 27.5923 24.6845 27.097 25.1798 26.6018C25.7457 26.0358 26.3117 25.4344 26.807 24.7623C27.1607 24.3025 27.4791 23.8426 27.7621 23.3474C27.9389 23.1351 27.9742 22.8874 27.8681 22.6752Z" />
+                                                <path
+                                                    d="M13.9659 16.2014C18.423 16.2014 22.0666 12.5579 22.0666 8.1007C22.0666 3.64352 18.423 0 13.9659 0C9.50869 0 5.86523 3.64352 5.86523 8.1007C5.86523 12.5579 9.50876 16.2014 13.9659 16.2014Z" />
+                                                <path
+                                                    d="M27.8681 22.6752C27.6558 22.1446 27.3729 21.6494 27.0545 21.1895C25.4273 18.784 22.9158 17.1922 20.0858 16.8031C19.7321 16.7677 19.343 16.8384 19.06 17.0507C17.5743 18.1473 15.8056 18.7133 13.9661 18.7133C12.1266 18.7133 10.3579 18.1473 8.87219 17.0507C8.58917 16.8384 8.20005 16.7323 7.84634 16.8031C5.0164 17.1922 2.46948 18.784 0.877655 21.1895C0.55929 21.6494 0.276269 22.18 0.0640708 22.6752C-0.0420283 22.8875 -0.00668454 23.1351 0.0994145 23.3474C0.382436 23.8426 0.736144 24.3379 1.05451 24.7623C1.54973 25.4345 2.08036 26.0358 2.68174 26.6018C3.17696 27.097 3.74294 27.5569 4.30898 28.0167C7.10351 30.1039 10.4641 31.2004 13.9307 31.2004C17.3974 31.2004 20.758 30.1038 23.5525 28.0167C24.1185 27.5923 24.6845 27.097 25.1798 26.6018C25.7457 26.0358 26.3117 25.4344 26.807 24.7623C27.1607 24.3025 27.4791 23.8426 27.7621 23.3474C27.9389 23.1351 27.9742 22.8874 27.8681 22.6752Z" />
                                             </svg>
                                         </a>
                                     @else
                                         <div class="dropdown custom-user-dropdown">
-                                            <a href="javascript:void(0)" class="homec-header__icon" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a href="javascript:void(0)" class="homec-header__icon" id="userDropdown"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <svg width="28" height="32" viewBox="0 0 28 32" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.9659 16.2014C18.423 16.2014 22.0666 12.5579 22.0666 8.1007C22.0666 3.64352 18.423 0 13.9659 0C9.50869 0 5.86523 3.64352 5.86523 8.1007C5.86523 12.5579 9.50876 16.2014 13.9659 16.2014Z" />
-                                                    <path d="M27.8681 22.6752C27.6558 22.1446 27.3729 21.6494 27.0545 21.1895C25.4273 18.784 22.9158 17.1922 20.0858 16.8031C19.7321 16.7677 19.343 16.8384 19.06 17.0507C17.5743 18.1473 15.8056 18.7133 13.9661 18.7133C12.1266 18.7133 10.3579 18.1473 8.87219 17.0507C8.58917 16.8384 8.20005 16.7323 7.84634 16.8031C5.0164 17.1922 2.46948 18.784 0.877655 21.1895C0.55929 21.6494 0.276269 22.18 0.0640708 22.6752C-0.0420283 22.8875 -0.00668454 23.1351 0.0994145 23.3474C0.382436 23.8426 0.736144 24.3379 1.05451 24.7623C1.54973 25.4345 2.08036 26.0358 2.68174 26.6018C3.17696 27.097 3.74294 27.5569 4.30898 28.0167C7.10351 30.1039 10.4641 31.2004 13.9307 31.2004C17.3974 31.2004 20.758 30.1038 23.5525 28.0167C24.1185 27.5923 24.6845 27.097 25.1798 26.6018C25.7457 26.0358 26.3117 25.4344 26.807 24.7623C27.1607 24.3025 27.4791 23.8426 27.7621 23.3474C27.9389 23.1351 27.9742 22.8874 27.8681 22.6752Z" />
+                                                    <path
+                                                        d="M13.9659 16.2014C18.423 16.2014 22.0666 12.5579 22.0666 8.1007C22.0666 3.64352 18.423 0 13.9659 0C9.50869 0 5.86523 3.64352 5.86523 8.1007C5.86523 12.5579 9.50876 16.2014 13.9659 16.2014Z" />
+                                                    <path
+                                                        d="M27.8681 22.6752C27.6558 22.1446 27.3729 21.6494 27.0545 21.1895C25.4273 18.784 22.9158 17.1922 20.0858 16.8031C19.7321 16.7677 19.343 16.8384 19.06 17.0507C17.5743 18.1473 15.8056 18.7133 13.9661 18.7133C12.1266 18.7133 10.3579 18.1473 8.87219 17.0507C8.58917 16.8384 8.20005 16.7323 7.84634 16.8031C5.0164 17.1922 2.46948 18.784 0.877655 21.1895C0.55929 21.6494 0.276269 22.18 0.0640708 22.6752C-0.0420283 22.8875 -0.00668454 23.1351 0.0994145 23.3474C0.382436 23.8426 0.736144 24.3379 1.05451 24.7623C1.54973 25.4345 2.08036 26.0358 2.68174 26.6018C3.17696 27.097 3.74294 27.5569 4.30898 28.0167C7.10351 30.1039 10.4641 31.2004 13.9307 31.2004C17.3974 31.2004 20.758 30.1038 23.5525 28.0167C24.1185 27.5923 24.6845 27.097 25.1798 26.6018C25.7457 26.0358 26.3117 25.4344 26.807 24.7623C27.1607 24.3025 27.4791 23.8426 27.7621 23.3474C27.9389 23.1351 27.9742 22.8874 27.8681 22.6752Z" />
                                                 </svg>
                                             </a>
-                                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0" aria-labelledby="userDropdown">
-                                                <li><a class="dropdown-item py-2" href="{{ route('login') }}"><i class="fa fa-user me-2 text-primary"></i> User Login</a></li>
-                                                <li><a class="dropdown-item py-2" href="{{ route('builder.login') }}"><i class="fas fa-user-helmet-safety me-2 text-primary"></i> Builder Login</a></li>
+                                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0"
+                                                aria-labelledby="userDropdown">
+                                                <li><a class="dropdown-item py-2" href="{{ route('login') }}"><i
+                                                            class="fa fa-user me-2 text-primary"></i> User Login</a></li>
+                                                <li><a class="dropdown-item py-2" href="{{ route('builder.login') }}"><i
+                                                            class="fas fa-user-helmet-safety me-2 text-primary"></i>
+                                                        Builder Login</a></li>
                                             </ul>
                                         </div>
                                     @endauth
@@ -499,7 +512,8 @@
                                         <a class="logo" href="{{ route('home') }}"><img
                                                 src="{{ asset($setting->footer_logo) }}" alt="ProCare"></a>
                                     </div>
-                                    <p class="mt-2 text-dark font-weight-bold" style="color: #C99A2E !important;">Your Property. Your Rights. Our Fight.</p>
+                                    <p class="mt-2 text-dark font-weight-bold" style="color: #C99A2E !important;">Your
+                                        Property. Your Rights. Our Fight.</p>
                                     <p class="footer-about-text">{{ $footer->about_us }}</p>
                                     <!-- Social -->
                                     <ul class="homec-social homec-social__v2">
@@ -537,7 +551,7 @@
                                         <div class="single-widget footer-need-helps">
                                             <h3 class="widget-title">{{ __('user.Important Link') }}</h3>
                                             <ul class="f-need-helps-inner list-none">
-                                               
+
                                                 <li><a href="{{ route('about-us') }}"><i
                                                             class="fa-solid fa-minus"></i>{{ __('user.About Us') }}</a>
                                                 </li>
@@ -548,10 +562,11 @@
                                                             class="fa-solid fa-minus"></i>Jahir Suchna</a>
                                                 </li>
                                                 <li><a href="{{ route('vaculation.form') }}"><i
-                                                            class="fa-solid fa-minus"></i>Vaculation & Search Report</a>
+                                                            class="fa-solid fa-minus"></i>Vaculation & Search
+                                                        Report</a>
                                                 </li>
                                                 <li><a href="{{ route('home-service.form') }}"><i
-                                                            class="fa-solid fa-minus"></i>Home Service Register</a>
+                                                            class="fa-solid fa-minus"></i>Registery Home Service</a>
                                                 </li>
                                             </ul>
                                         </div>

@@ -71,7 +71,7 @@ class ProcareServiceController extends Controller
 
         ServiceRequest::create($data);
 
-        $notification = trans('Home Service request submitted successfully.');
+        $notification = trans('Registery Home Service submitted successfully.');
         return redirect()->back()->with(['message' => $notification, 'alert-type' => 'success']);
     }
 }
