@@ -330,7 +330,7 @@
                                                         </li>
                                                         <li><a href="{{ route('vaculation.form') }}">Vaculation &
                                                                 Search Report</a></li>
-                                                        <li><a href="{{ route('home-service.form') }}">Register Home
+                                                        <li><a href="{{ route('home-service.form') }}">Registery Home
                                                                 Service </a></li>
                                                     </ul>
                                                 </li>
