@@ -139,8 +139,8 @@
                     <li class="{{ Route::is('admin.service-requests.vaculation') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.service-requests.vaculation') }}">Vaculation & Search Report</a>
                     </li>
-                    <li class="{{ Route::is('admin.service-requests.home-service') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.service-requests.home-service') }}">Home Service Register</a>
+                    <li class="{{ Route::is('admin.service-requests.registry-home-service') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.service-requests.registry-home-service') }}">Registry Home Service</a>
                     </li>
                     <li class="{{ Route::is('admin.public-notices.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.public-notices.index') }}">Jahir Suchnaye</a>

@@ -186,8 +186,13 @@ Route::group(['middleware' => ['demo', 'XSS']], function () {
             Route::get('/jahir-suchna/{id}', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'jahirSuchnaShow'])->name('jahir-suchna.show');
             Route::get('/vaculation-search-report', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'vaculationForm'])->name('vaculation.form')->middleware('auth:web');
             Route::post('/vaculation-search-report', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'vaculationSubmit'])->name('vaculation.submit')->middleware('auth:web');
-            Route::get('/home-service-register', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'homeServiceForm'])->name('home-service.form')->middleware('auth:web');
-            Route::post('/home-service-register', [\App\Http\Controllers\Frontend\ProcareServiceController::class, 'homeServiceSubmit'])->name('home-service.submit')->middleware('auth:web');
+            Route::get('/registry-home-service', [\App\Http\Controllers\Frontend\ServiceRequestController::class, 'index'])->name('registry-home-service.index');
+            Route::post('/registry-home-service', [\App\Http\Controllers\Frontend\ServiceRequestController::class, 'store'])->name('registry-home-service.store');
+            
+            // Legacy alias routes for backward compatibility with existing blades
+            Route::get('/home-service-register', [\App\Http\Controllers\Frontend\ServiceRequestController::class, 'index'])->name('home-service.form')->middleware('auth:web');
+            Route::post('/home-service-register', [\App\Http\Controllers\Frontend\ServiceRequestController::class, 'store'])->name('home-service.submit')->middleware('auth:web');
+            Route::post('/home-service-register-store', [\App\Http\Controllers\Frontend\ServiceRequestController::class, 'store'])->name('home-service.store')->middleware('auth:web');
 
             Route::get('/pricing-plan', [HomeController::class, 'pricing_plan'])->name('pricing-plan');
 
@@ -289,6 +294,7 @@ Route::group(['middleware' => ['demo', 'XSS']], function () {
                 Route::get('my-reviews', [UserProfileController::class, 'my_reviews'])->name('my-reviews');
 
                 Route::get('orders', [UserProfileController::class, 'orders'])->name('orders');
+                Route::get('my-service-requests', [UserProfileController::class, 'my_service_requests'])->name('my-service-requests');
 
                 Route::get('logout', [LoginController::class, 'userLogout'])->name('logout');
 
@@ -622,7 +628,7 @@ Route::group(['middleware' => ['demo', 'XSS']], function () {
 
         // ProCare Services Admin Routes
         Route::get('service-requests/vaculation-search-report', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'vaculationSearchReport'])->name('service-requests.vaculation');
-        Route::get('service-requests/home-service', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'homeService'])->name('service-requests.home-service');
+        Route::get('service-requests/registry-home-service', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'registryHomeService'])->name('service-requests.registry-home-service');
         Route::get('service-requests/{id}', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'show'])->name('service-requests.show');
         Route::put('service-requests/{id}', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'update'])->name('service-requests.update');
         Route::delete('service-requests/{id}', [\App\Http\Controllers\Admin\ServiceRequestController::class, 'destroy'])->name('service-requests.destroy');

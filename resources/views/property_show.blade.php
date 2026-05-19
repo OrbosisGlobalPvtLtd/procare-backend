@@ -57,7 +57,7 @@
                     							</div>
 												<!-- End Amount Card -->
 												<div class="homec-overlay"></div>
-												<img src="{{ ($slider->image)? asset($slider->image) : asset($setting->default_placeholder)}}" alt="#">
+												<img src="{{ \App\Helpers\ImageHelper::getImageUrl($slider->image, $setting->default_placeholder) }}" alt="#">
 												<div class="homec-image-gallery__bottom">
 													<div class="homec-image-gallery__content">
 														<h3 class="homec-image-gallery__title">{{ $property->title }}</h3>
@@ -79,7 +79,7 @@
     										    @foreach($sliders as $index => $slider)
     											<li>
     												<div class="single-thumbs">
-    													<img src="{{ ($slider->image)? asset($slider->image) : asset($setting->default_placeholder)}}" alt="thumbs">
+    													<img src="{{ \App\Helpers\ImageHelper::getImageUrl($slider->image, $setting->default_placeholder) }}" alt="thumbs">
     												</div>
     											</li>
     											@endforeach
@@ -217,28 +217,34 @@
                             <!--  Floor Plans -->
                             <div class="tab-pane fade" id="homec-pd-tab2" role="tabpanel">
                                 <div class="homec-pdetails-tab__inner">
-                                    <div class="homec-accordion accordion accordion-flush" id="homec-accordion">
+                                    @if ($property_plans->count() > 0)
+                                        <div class="homec-accordion accordion accordion-flush" id="homec-accordion">
 
-                                        @foreach ($property_plans as $plan_index => $property_plan)
-                                            <!-- Single Accordion -->
-                                            <div class="accordion-item homec-accordion__single homec-accordion__single--floor mg-top-20">
-                                                <h2 class="accordion-header" id="homect-1-{{ $plan_index }}">
-                                                    <button class="accordion-button collapsed homec-accordion__heading homec-accordion__heading--floor" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapseOne-{{ $plan_index }}" >{{ html_decode($property_plan->title) }}</button>
-                                                </h2>
-                                                <div id="ac-collapseOne-{{ $plan_index }}" class="accordion-collapse collapse {{ $plan_index == 0 ? 'show' : '' }}" aria-labelledby="homect-1-{{ $plan_index }}" data-bs-parent="#homec-accordion">
-                                                    <div class="accordion-body homec-accordion__body homec-accordion__body--floor">
-                                                        <div class="floor-plan-img">
-                                                            <img src="{{ ($property_plan->image)? asset($property_plan->image) : asset($setting->default_placeholder)}}">
-                                                        </div>
-                                                        <div class="floor-plan-content">
-                                                            <p>{{ html_decode($property_plan->description) }}</p>
+                                            @foreach ($property_plans as $plan_index => $property_plan)
+                                                <!-- Single Accordion -->
+                                                <div class="accordion-item homec-accordion__single homec-accordion__single--floor mg-top-20">
+                                                    <h2 class="accordion-header" id="homect-1-{{ $plan_index }}">
+                                                        <button class="accordion-button collapsed homec-accordion__heading homec-accordion__heading--floor" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapseOne-{{ $plan_index }}" >{{ html_decode($property_plan->title) }}</button>
+                                                    </h2>
+                                                    <div id="ac-collapseOne-{{ $plan_index }}" class="accordion-collapse collapse {{ $plan_index == 0 ? 'show' : '' }}" aria-labelledby="homect-1-{{ $plan_index }}" data-bs-parent="#homec-accordion">
+                                                        <div class="accordion-body homec-accordion__body homec-accordion__body--floor">
+                                                            <div class="floor-plan-img">
+                                                                <img src="{{ \App\Helpers\ImageHelper::getImageUrl($property_plan->image, $setting->default_placeholder) }}">
+                                                            </div>
+                                                            <div class="floor-plan-content">
+                                                                <p>{{ html_decode($property_plan->description) }}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- End Single Accordion -->
-                                        @endforeach
-                                    </div>
+                                                <!-- End Single Accordion -->
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <div class="alert alert-warning procare-glass-card text-center" style="color: #ffd700; background: rgba(14, 30, 64, 0.9);">
+                                            <h4>No property plan available.</h4>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <!--  End Floor Plans -->
@@ -249,7 +255,7 @@
                                     <!-- Homec Features -->
                                     <div class="homec-ptdetails-video">
                                         <div class="homec-overlay"></div>
-                                       <img src="{{ ($property->video_thumbnail)? asset($property->video_thumbnail) : asset($setting->default_placeholder)}}">
+                                       <img src="{{ \App\Helpers\ImageHelper::getImageUrl($property->video_thumbnail, $setting->default_placeholder) }}">
                                        <div class="homec-ptdetails-video__video">
                                             <a data-video-id="{{ $property->video_id }}" class="js-video-btn homec-btn homec-btn__second homec-btn__video">
                                                 <div class="homec-btn__inside">
@@ -305,45 +311,55 @@
                             <div class="tab-pane fade" id="homec-pd-tab5" role="tabpanel">
                                 <div class="homec-pdetails-tab__inner">
                                    <div class="homec-pdetails-tab--review">
-
-                                        @foreach ($reviews as $review_item)
-                                        <div class="homec-testimonial homec-testimonial--review homec-border mg-top-30">
-                                            <div class="homec-rating--main mg-btm-15">
-                                                <!-- Author Rating -->
-                                                <ul class="homec-rating list-none">
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        @if ($review_item->rating < $i)
-                                                        <li><i class="fa-regular fa-star"></i></li>
-                                                        @else
-                                                        <li><i class="fa-solid fa-star"></i></li>
-                                                        @endif
-                                                    @endfor
-                                                </ul>
-                                                <span class="homec-primary-color">{{ $review_item->created_at->format('M d Y') }}</span>
+                                        @if ($reviews->count() > 0)
+                                            <div class="review-summary mg-btm-30">
+                                                <h4 style="color: #0e1e40;">Average Rating: {{ number_format($property->reviews->avg('rating') ?? 0, 1) }} <i class="fa-solid fa-star" style="color: #ffd700;"></i> ({{ $reviews->total() }} Reviews)</h4>
                                             </div>
-                                            <!-- Testimonial Text -->
-                                            <p class="homec-testimonial__text">“{{ html_decode($review_item->review) }}”</p>
-                                            <div class="homec-testimonial__bottom">
-                                                <!-- Testimonial Author -->
-                                                <div class="homec-testimonial__author">
-                                                    @if ($review_item->user->image)
-                                                    <img src="{{ asset($review_item->user->image) }}" alt="image">
-                                                    @else
-                                                    <img src="{{ asset($default_user_avatar) }}" alt="default_user_avatar">
-                                                    @endif
 
-                                                    <div class="homec-testimonial__author--info">
-                                                        <h5 class="homec-testimonial__author--title">{{ html_decode($review_item->user->name) }}</h5>
-                                                        <p class="homec-testimonial__author--position">{{ html_decode($review_item->user->designation) }}</p>
+                                            @foreach ($reviews as $review_item)
+                                            <div class="homec-testimonial homec-testimonial--review homec-border mg-top-30">
+                                                <div class="homec-rating--main mg-btm-15">
+                                                    <!-- Author Rating -->
+                                                    <ul class="homec-rating list-none">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($review_item->rating < $i)
+                                                            <li><i class="fa-regular fa-star"></i></li>
+                                                            @else
+                                                            <li><i class="fa-solid fa-star"></i></li>
+                                                            @endif
+                                                        @endfor
+                                                    </ul>
+                                                    <span class="homec-primary-color">{{ $review_item->created_at->format('M d Y') }}</span>
+                                                </div>
+                                                <!-- Testimonial Text -->
+                                                <p class="homec-testimonial__text">“{{ html_decode($review_item->review) }}”</p>
+                                                <div class="homec-testimonial__bottom">
+                                                    <!-- Testimonial Author -->
+                                                    <div class="homec-testimonial__author">
+                                                        @if ($review_item->user && $review_item->user->image)
+                                                        <img src="{{ \App\Helpers\ImageHelper::getImageUrl($review_item->user->image) }}" alt="image">
+                                                        @else
+                                                        <img src="{{ \App\Helpers\ImageHelper::getImageUrl($default_user_avatar) }}" alt="default_user_avatar">
+                                                        @endif
+
+                                                        <div class="homec-testimonial__author--info">
+                                                            <h5 class="homec-testimonial__author--title">{{ $review_item->user ? html_decode($review_item->user->name) : 'Guest' }}</h5>
+                                                            <p class="homec-testimonial__author--position">{{ $review_item->user ? html_decode($review_item->user->designation) : '' }}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        @endforeach
+                                            @endforeach
 
-                                        <div class="row mg-top-40">
-                                            {{ $reviews->links('custom_pagination') }}
-                                        </div>
+                                            <div class="row mg-top-40">
+                                                {{ $reviews->links('custom_pagination') }}
+                                            </div>
+                                        @else
+                                            <div class="alert alert-info text-center procare-glass-card" style="color: #fff; background: rgba(14, 30, 64, 0.9);">
+                                                <h4>No reviews available for this property yet.</h4>
+                                                <p>Be the first to review this property!</p>
+                                            </div>
+                                        @endif
 
                                    </div>
 
@@ -404,15 +420,15 @@
                         <button id="run" class="homec-btn homec-btn__second homec-property-ag__button"><span>{{ __('user.Book Now') }}</span></button>
                     </div>
                     <!-- Property Agent Card -->
-                    <div class="homec-property-ag homec-property-ag--side homec-bg-cover homec-agent-side-cover">
+                    <div class="homec-property-ag homec-property-ag--side homec-bg-cover homec-agent-side-cover procare-glass-card">
                         <h3 class="homec-property-ag__title">{{__('user.Property Agent')}}</h3>
                         <!-- Property Profile -->
                         <div class="homec-property-ag__author">
                             <div class="homec-property-ag__author--img">
                                 @if ($property_agent->image)
-                                <img src="{{ asset($property_agent->image) }}" alt="image">
+                                <img src="{{ \App\Helpers\ImageHelper::getImageUrl($property_agent->image) }}" alt="image">
                                 @else
-                                <img src="{{ asset($default_user_avatar) }}" alt="image">
+                                <img src="{{ \App\Helpers\ImageHelper::getImageUrl($default_user_avatar) }}" alt="image">
                                 @endif
 
                             </div>

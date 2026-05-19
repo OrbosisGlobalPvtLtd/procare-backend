@@ -1532,9 +1532,9 @@
                                 style="width: 60px; height: 60px; background: rgba(201, 154, 46, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <i class="fa fa-tools" style="font-size: 24px; color: #C99A2E;"></i>
                             </div>
-                            <h3 class="homec-blog__title mb-3"><a href="{{ route('home-service.form') }}">Registery Home
+                            <h3 class="homec-blog__title mb-3"><a href="{{ route('home-service.form') }}">Registry Home
                                     Service</a></h3>
-                            <p style="color: #6B7280; margin-bottom: 20px;">Registery and book reliable home maintenance
+                            <p style="color: #6B7280; margin-bottom: 20px;">Registry and book reliable home maintenance
                                 services directly.</p>
                             <a href="{{ route('home-service.form') }}" class="homec-btn"
                                 style="background-color: #C99A2E; border-color: #C99A2E; width: 100%; text-align: center;"><span>Book

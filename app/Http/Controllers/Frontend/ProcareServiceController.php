@@ -42,7 +42,7 @@ class ProcareServiceController extends Controller
 
         if ($request->hasFile('document')) {
             $file = $request->file('document');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
             $file->move(public_path('uploads/service-requests'), $filename);
             $data['document'] = 'uploads/service-requests/' . $filename;
         }
@@ -71,7 +71,7 @@ class ProcareServiceController extends Controller
 
         ServiceRequest::create($data);
 
-        $notification = trans('Registery Home Service submitted successfully.');
+        $notification = trans('Registry Home Service submitted successfully.');
         return redirect()->back()->with(['message' => $notification, 'alert-type' => 'success']);
     }
 }

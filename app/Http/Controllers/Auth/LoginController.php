@@ -83,8 +83,12 @@ class LoginController extends Controller
                     if(Auth::guard('web')->attempt($credential,$request->remember)){
                         $notification = trans('user_validation.Login Successfully');
                         $notification=array('messege'=>$notification,'alert-type'=>'success');
+                        
+                        $dashboardRoute = Auth::guard('web')->user()->getDashboardRoute();
+                        if (\Route::has($dashboardRoute)) {
+                            return redirect()->route($dashboardRoute)->with($notification);
+                        }
                         return redirect()->route('user.dashboard')->with($notification);
-
                     }
                 }else{
                     $notification = trans('user_validation.Credentials does not exist');
@@ -151,15 +155,16 @@ class LoginController extends Controller
                 $message = str_replace('{{name}}',$user->name,$message);
                 Mail::to($user->email)->send(new UserForgetPassword($message,$subject,$user));
 
-            }catch( \Exception $e){
-                
-                \Log::error('Mail send error: ' . $e->getMessage());
-                
-            }
+                $notification = trans('user_validation.Reset password link send to your email.');
+                $notification = array('messege'=>$notification,'alert-type'=>'success');
+                return redirect()->back()->with($notification);
 
-            $notification = trans('user_validation.Reset password link send to your email.');
-            $notification = array('messege'=>$notification,'alert-type'=>'success');
-            return redirect()->back()->with($notification);
+            }catch( \Exception $e){
+                \Log::error('Mail send error: ' . $e->getMessage());
+                $notification = trans('user_validation.Failed to send email. Please check SMTP settings.');
+                $notification = array('messege'=>$notification,'alert-type'=>'error');
+                return redirect()->back()->with($notification);
+            }
 
         }else{
             $notification = trans('user_validation.Email does not exist');
@@ -253,6 +258,11 @@ class LoginController extends Controller
         $user = Socialite::driver('google')->user();
         $user = $this->createUser($user,'google');
         auth()->login($user);
+        
+        $dashboardRoute = $user->getDashboardRoute();
+        if (\Route::has($dashboardRoute)) {
+            return redirect()->intended(route($dashboardRoute));
+        }
         return redirect()->intended(route('user.dashboard'));
     }
 

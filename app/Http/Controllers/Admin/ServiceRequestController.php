@@ -14,10 +14,16 @@ class ServiceRequestController extends Controller
         return view('admin.service_requests.index', compact('requests'))->with('title', 'Vaculation & Search Report Requests');
     }
 
-    public function homeService()
+    public function registryHomeService(Request $request)
     {
-        $requests = ServiceRequest::where('request_type', 'home_service')->orderBy('id', 'desc')->get();
-        return view('admin.service_requests.index', compact('requests'))->with('title', 'Registery Home Service Requests');
+        $query = ServiceRequest::where('request_type', 'registry_home_service')->orderBy('id', 'desc');
+        
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+        
+        $requests = $query->get();
+        return view('admin.service_requests.index', compact('requests'))->with('title', 'Registry Home Service Requests');
     }
 
     public function show($id)

@@ -368,7 +368,7 @@ public function updateApprovalStatus(Request $request, $id)
 
         Auth::login($user);
 
-        return redirect()->route('builder.login')
+        return redirect()->route('builder.dashboard')
             ->with('success', '🎉 Registration Successful!');
     }
 

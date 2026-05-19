@@ -456,4 +456,37 @@ class UserProfileController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function my_service_requests() {
+        $setting = Setting::first();
+        $user = Auth::guard('web')->user();
+        
+        $requests = \App\Models\ServiceRequest::where('user_id', $user->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+            
+        // mobile app
+        $app_visibility = false;
+        $homepage = Homepage::first();
+        if($homepage->show_mobile_app == 'enable') $app_visibility = true;
+        $mobile_app = (object) array(
+            'visibility' => $app_visibility,
+            'app_bg' => $setting->app_bg,
+            'full_title' => $setting->app_full_title,
+            'description' => $setting->app_description,
+            'play_store' => $setting->google_playstore_link,
+            'app_store' => $setting->app_store_link,
+            'image' => $setting->app_image,
+            'apple_btn_text1' => $setting->apple_btn_text1,
+            'apple_btn_text2' => $setting->apple_btn_text2,
+            'google_btn_text1' => $setting->google_btn_text1,
+            'google_btn_text2' => $setting->google_btn_text2,
+        );
+
+        return view('user.my_service_requests')->with([
+            'user' => $user,
+            'requests' => $requests,
+            'mobile_app' => $mobile_app
+        ]);
+    }
+
 }

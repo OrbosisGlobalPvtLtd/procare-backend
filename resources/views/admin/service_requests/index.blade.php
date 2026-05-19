@@ -20,11 +20,14 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
+                                            <th>Customer Name</th>
                                             <th>Mobile</th>
+                                            <th>Property Type</th>
+                                            <th>Request Type</th>
+                                            <th>Preferred Date</th>
                                             <th>Status</th>
                                             <th>Created At</th>
-                                            <th>Action</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,10 +36,11 @@
                                             <td>{{ $request->id }}</td>
                                             <td>{{ $request->name }}</td>
                                             <td>{{ $request->mobile }}</td>
+                                            <td>{{ $request->property_type ?? 'N/A' }}</td>
+                                            <td>{{ ucwords(str_replace('_', ' ', $request->request_type)) }}</td>
+                                            <td>{{ $request->preferred_date ? $request->preferred_date->format('Y-m-d') : 'N/A' }}</td>
                                             <td>
-                                                <span class="badge badge-{{ $request->status == 'pending' ? 'warning' : ($request->status == 'completed' ? 'success' : ($request->status == 'rejected' ? 'danger' : 'primary')) }}">
-                                                    {{ ucfirst($request->status) }}
-                                                </span>
+                                                {!! $request->status_badge !!}
                                             </td>
                                             <td>{{ $request->created_at->format('Y-m-d') }}</td>
                                             <td>

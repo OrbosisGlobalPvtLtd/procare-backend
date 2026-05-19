@@ -25,12 +25,20 @@
                                     <td>{{ $request->name }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Email</th>
+                                    <td>{{ $request->email ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
                                     <th>Mobile</th>
                                     <td>{{ $request->mobile }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Service Type</th>
-                                    <td>{{ $request->service_type ?? 'N/A' }}</td>
+                                    <th>Request Type</th>
+                                    <td>{{ ucwords(str_replace('_', ' ', $request->request_type)) }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Property Type</th>
+                                    <td>{{ $request->property_type ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Property Address</th>
@@ -42,7 +50,11 @@
                                 </tr>
                                 <tr>
                                     <th>Preferred Date</th>
-                                    <td>{{ $request->preferred_date ?? 'N/A' }}</td>
+                                    <td>{{ $request->preferred_date ? $request->preferred_date->format('Y-m-d') : 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Preferred Time</th>
+                                    <td>{{ $request->preferred_time ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Remark</th>
@@ -52,7 +64,7 @@
                                     <th>Document</th>
                                     <td>
                                         @if($request->document)
-                                        <a href="{{ asset($request->document) }}" target="_blank" class="btn btn-sm btn-info">View Document</a>
+                                        <a href="{{ $request->document_url }}" target="_blank" class="btn btn-sm btn-info">View Document</a>
                                         @else
                                         No Document
                                         @endif
@@ -77,6 +89,7 @@
                                     <select name="status" class="form-control">
                                         <option value="pending" {{ $request->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                         <option value="in_review" {{ $request->status == 'in_review' ? 'selected' : '' }}>In Review</option>
+                                        <option value="approved" {{ $request->status == 'approved' ? 'selected' : '' }}>Approved</option>
                                         <option value="completed" {{ $request->status == 'completed' ? 'selected' : '' }}>Completed</option>
                                         <option value="rejected" {{ $request->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
                                     </select>

@@ -127,6 +127,47 @@
         .tox-statusbar__branding {
             display: none !important;
         }
+
+        /* ProCare Premium Glass Form UI */
+        .procare-glass-card {
+            background: rgba(14, 30, 64, 0.9) !important; /* Navy dark */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3) !important; /* Gold border */
+            border-radius: 15px !important;
+            padding: 30px !important;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+        .procare-glass-card .homec-property-ag__title,
+        .procare-glass-card h3 {
+            color: #ffd700 !important; /* Gold */
+            font-weight: 600 !important;
+            margin-bottom: 20px !important;
+        }
+        .procare-glass-card .form-group input,
+        .procare-glass-card .form-group textarea {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 215, 0, 0.5) !important;
+            color: #fff !important;
+            border-radius: 8px !important;
+        }
+        .procare-glass-card .form-group input::placeholder,
+        .procare-glass-card .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+        .procare-glass-card .homec-property-ag__button,
+        .procare-glass-card .homec-btn {
+            background: #ffd700 !important;
+            color: #0e1e40 !important;
+            border: none !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+        }
+        .procare-glass-card .homec-property-ag__button:hover,
+        .procare-glass-card .homec-btn:hover {
+            background: #fff !important;
+            color: #0e1e40 !important;
+        }
     </style>
 
     @include('theme_color')
@@ -330,7 +371,7 @@
                                                         </li>
                                                         <li><a href="{{ route('vaculation.form') }}">Vaculation &
                                                                 Search Report</a></li>
-                                                        <li><a href="{{ route('home-service.form') }}">Registery Home
+                                                        <li><a href="{{ route('home-service.form') }}">Registry Home
                                                                 Service </a></li>
                                                     </ul>
                                                 </li>
@@ -566,7 +607,7 @@
                                                         Report</a>
                                                 </li>
                                                 <li><a href="{{ route('home-service.form') }}"><i
-                                                            class="fa-solid fa-minus"></i>Registery Home Service</a>
+                                                            class="fa-solid fa-minus"></i>Registry Home Service</a>
                                                 </li>
                                             </ul>
                                         </div>

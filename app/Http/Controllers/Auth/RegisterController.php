@@ -98,7 +98,7 @@ class RegisterController extends Controller
 
         $notification = trans('user_validation.Register Successfully. Please Verify your email');
         $notification=array('messege'=>$notification,'alert-type'=>'success');
-        return redirect()->back()->with($notification);
+        return redirect()->route('login')->with($notification);
     }
 
     public function userVerification($token){
